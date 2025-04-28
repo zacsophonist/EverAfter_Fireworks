@@ -160,7 +160,7 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 // Firework class
-class Firework {
+/* class Firework {
     constructor(x, y, targetX, targetY, color) {
         this.x = x;
         this.y = y;
@@ -242,7 +242,75 @@ class Firework {
             particles.push(new Particle(this.targetX, this.targetY, this.hue));
         }
     }
-}
+} */
+
+    class Firework {
+        constructor(x, y, angle, color) {
+          // position
+          this.x = x;
+          this.y = y;
+      
+          // remember launch point only for trail drawing
+          this.coordinates     = Array(3).fill([x, y]);
+          this.trail           = [];
+          this.maxTrailLength  = 5;
+      
+          // motion
+          this.angle       = angle;
+          this.speed       = 12;    // initial “kick” speed
+          this.acceleration= 0.98;  // <1 to slow down each frame
+          this.gravity     = 0.3;   // pulls downward every frame
+      
+          // appearance
+          this.hue         = color;
+          this.brightness  = Math.random()*50 + 50;
+        }
+      
+        update(i) {
+          // — trail history —
+          this.coordinates.pop();
+          this.coordinates.unshift([this.x, this.y]);
+          this.trail.unshift({ x:this.x, y:this.y, alpha:1 });
+          if (this.trail.length > this.maxTrailLength) {
+            this.trail.pop();
+          }
+      
+          // — vertical step next frame —
+          const dy = Math.sin(this.angle)*this.speed + this.gravity;
+      
+          // — apex detection —  
+          // Once dy flips from negative (still rising) to >=0 (would start falling):
+          if (dy >= 0) {
+            this.createParticles();
+            fireworks.splice(i, 1);
+            return;
+          }
+      
+          // — keep climbing —  
+          this.speed *= this.acceleration;
+          this.x     += Math.cos(this.angle)*this.speed;
+          this.y     += dy;
+        }
+      
+        draw() {
+          ctx.beginPath();
+          // draw the luminous tracer
+          for (let p of this.trail) {
+            ctx.globalAlpha = p.alpha;
+            ctx.fillStyle   = `hsl(${this.hue},100%,${this.brightness}%)`;
+            ctx.rect(p.x, p.y, 3, 3);
+            p.alpha *= 0.9;
+          }
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+      
+        createParticles() {
+          for (let i=0; i<60; i++) {
+            particles.push(new Particle(this.x, this.y, this.hue));
+          }
+        }
+      }
 
 // Particle class
 class Particle {
@@ -310,7 +378,7 @@ let particles = [];
 let hue = 120;
 
 // Animation loop
-function animate() {
+/* function animate() {
     requestAnimationFrame(animate);
     
     // Clear canvas with semi-transparent black
@@ -345,6 +413,49 @@ function animate() {
     
     // Cycle hue more slowly
     hue += 0.3; // Reduced from 0.5 for slower color transitions
+} */
+
+function animate() {
+    requestAnimationFrame(animate);
+    
+    // fade trails
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // ~3% chance per frame to launch
+    if (Math.random() < 0.03) {
+        // choose angle ±60° around straight up
+        const spreadDeg = 60;
+        const deg       = Math.random()*2*spreadDeg - spreadDeg;  // -60…+60
+        const angle     = (deg - 90) * Math.PI/180;               // -90° = up
+    
+        const color = Math.floor(Math.random()*360);
+    
+        // random initial speed 12–14
+        const speed = 12 + Math.random()*2;
+    
+        // create and override its speed
+        const fw = new Firework(
+        canvas.width/2,
+        canvas.height,
+        angle,
+        color
+        );
+        fw.speed = speed;
+        fireworks.push(fw);
+    }
+    
+    // update & draw fireworks
+    for (let i = fireworks.length - 1; i >= 0; i--) {
+        fireworks[i].draw();
+        fireworks[i].update(i);
+    }
+    
+    // update & draw particles
+    for (let i = particles.length - 1; i >= 0; i--) {
+        particles[i].draw();
+        particles[i].update(i);
+    }
 }
 
 // ==========================
