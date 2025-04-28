@@ -111,13 +111,39 @@ fadeElements.forEach(element => {
 
 // Form submission
 const contactForm = document.getElementById('contactForm');
+const thankYouMessage = document.getElementById('thankYouMessage');
+const submitButton = contactForm.querySelector('button[type="submit"]');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    // Here you would normally handle form submission to a server
-    // For GitHub Pages, you might use a service like Formspree
-    alert('Thank you for your message! We will get back to you soon.');
-    contactForm.reset();
+
+    // Disable the button to prevent double submissions
+    submitButton.disabled = true;
+    submitButton.innerText = 'Sending...';
+
+    const formData = new FormData(contactForm);
+
+    fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            contactForm.style.display = 'none';
+            thankYouMessage.style.display = 'block';
+            thankYouMessage.classList.add('fade-in'); // <- Fade in effect
+        } else {
+            alert('There was a problem submitting the form. Please try again.');
+            submitButton.disabled = false;
+            submitButton.innerText = 'Send Message';
+        }
+    }).catch(error => {
+        alert('There was a problem submitting the form. Please try again.');
+        submitButton.disabled = false;
+        submitButton.innerText = 'Send Message';
+    });
 });
 
 // Canvas Fireworks Animation
@@ -321,5 +347,40 @@ function animate() {
     hue += 0.3; // Reduced from 0.5 for slower color transitions
 }
 
-// Start animation
+// ==========================
+// Start Fireworks Animation
+// ==========================
 animate();
+
+
+// ==========================
+// Warns Firefox user about red weekend dates
+// ==========================
+// Returns True if browser is Firefox
+function isFirefox() {
+    return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+}
+const res = isFirefox()
+
+// Edits the Date field in the contact form to warn a Firefox user about coloured dates
+let cal = document.getElementById('firefoxWarning')
+if (res) {
+    cal.innerHTML = "Date of Wedding (Optional) <br> *Note: Weekend dates are coloured red in Firefox browser. This doesn't reflect availability."
+}
+
+// Set today's date as minimum date
+const weddingDateInput = document.getElementById('weddingDate');
+if (weddingDateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    weddingDateInput.setAttribute('min', today);
+
+    const validationIcon = document.querySelector('.validation-icon');
+
+    weddingDateInput.addEventListener('input', () => {
+        if (weddingDateInput.value) {
+            validationIcon.style.opacity = '1';
+        } else {
+            validationIcon.style.opacity = '0';
+        }
+    });
+}
