@@ -114,7 +114,7 @@ const contactForm = document.getElementById('contactForm');
 const thankYouMessage = document.getElementById('thankYouMessage');
 const submitButton = contactForm.querySelector('button[type="submit"]');
 
-contactForm.addEventListener('submit', (e) => {
+/* contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // Disable the button to prevent double submissions
@@ -144,7 +144,7 @@ contactForm.addEventListener('submit', (e) => {
         submitButton.disabled = false;
         submitButton.innerText = 'Send Message';
     });
-});
+}); */
 
 // Canvas Fireworks Animation
 const canvas = document.getElementById('fireworks-canvas');
