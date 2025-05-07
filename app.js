@@ -16,6 +16,26 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
+// Manages the Services dropdown menu
+const svcLink   = document.getElementById('services-link');
+const toggleBtn = document.getElementById('services-toggle');
+const dropdown  = document.querySelector('.has-dropdown .dropdown-menu');
+const arrow     = document.querySelector('.dropdown-arrow');
+
+toggleBtn.addEventListener('click', e => {
+  e.stopPropagation();  // prevent this click from also triggering the link’s navigation
+  const isOpen = dropdown.style.display === 'block';
+  dropdown.style.display = isOpen ? 'none' : 'block';
+  arrow.classList.toggle('rotate', !isOpen);
+});
+
+// Closes dropdown menu when user clicks anywhere else
+document.addEventListener('click', () => {
+  dropdown.style.display = 'none';
+  arrow.classList.remove('rotate');
+});
+
+
 // Header scroll effect
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
@@ -43,6 +63,10 @@ scrollTopBtn.addEventListener('click', () => {
     });
 });
 
+/* -------------------
+   GALLERY SECTION
+------------------- */
+
 // Gallery filtering
 const galleryFilters = document.querySelectorAll('.gallery-filter');
 const galleryItems = document.querySelectorAll('.gallery-item');
@@ -65,27 +89,115 @@ galleryFilters.forEach(filter => {
     });
 });
 
-// Gallery modal
-const modal = document.getElementById('imageModal');
-const modalImg = document.getElementById('modalImage');
-const closeModal = document.getElementsByClassName('close-modal')[0];
+// Grab modal elements and controls
+const modal      = document.getElementById('imageModal');        // the overlay container
+const modalImg   = document.getElementById('modalImage');        // <img> for image items
+const modalVid   = document.getElementById('modalVideo');        // <video> for video items
+const closeModal = document.querySelector('.close-modal');       // “×” button
+const prevBtn    = document.querySelector('.modal-prev');        // left arrow
+const nextBtn    = document.querySelector('.modal-next');        // right arrow
+const filterBtns = document.querySelectorAll('.gallery-filter'); // filter buttons
 
+let currentItems = [];   // array of .gallery-item elements currently visible by filter
+let currentIndex = 0;    // index within currentItems of the one showing in modal
+
+// Build the array of items matching the active filter button
+function updateCurrentItems() {
+  const activeFilter = document.querySelector('.gallery-filter.active').dataset.filter;
+  currentItems = Array.from(document.querySelectorAll('.gallery-item'))
+                      .filter(item =>
+                        activeFilter === 'all' ||
+                        item.dataset.category === activeFilter
+                      );
+}
+
+// Show the modal for the clicked thumbnail (image or video) and record its index
 galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-        modal.style.display = 'block';
-        modalImg.src = item.querySelector('img').src;
-    });
-});
+  item.addEventListener('click', () => {
+    updateCurrentItems();
+    currentIndex = currentItems.indexOf(item);
 
-closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
+    // Determine if this item contains a video or image
+    const imgEl = item.querySelector('img');
+    const vidEl = item.querySelector('video');
 
-window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.style.display = 'none';
+    if (vidEl) {
+      // Show video player
+      modalImg.style.display = 'none';
+      modalVid.src = vidEl.src;
+      modalVid.style.display = 'block';
+      modalVid.currentTime = 0;    // rewind to start
+      modalVid.play();             // start rendering frames immediately
+    } else {
+      // Show static image
+      modalVid.style.display = 'none';
+      modalImg.src = imgEl.src;
+      modalImg.style.display = 'block';
     }
+
+    modal.style.display = 'block';
+  });
 });
+
+// Move forwards or backwards through currentItems, wrapping around ends
+function navigate(offset) {
+  currentIndex = (currentIndex + offset + currentItems.length) % currentItems.length;
+  const nextItem = currentItems[currentIndex];
+  const imgEl = nextItem.querySelector('img');
+  const vidEl = nextItem.querySelector('video');
+
+  if (vidEl) {
+    modalImg.style.display = 'none';
+    modalVid.src = vidEl.src;
+    modalVid.style.display = 'block';
+    modalVid.currentTime = 0;    // rewind when arrow‑navigating
+    modalVid.play();             // resume playback immediately
+  } else {
+    modalVid.style.display = 'none';
+    modalImg.src = imgEl.src;
+    modalImg.style.display = 'block';
+  }
+}
+
+// Hook up arrow buttons to navigate
+prevBtn.addEventListener('click', () => navigate(-1));
+nextBtn.addEventListener('click', () => navigate(1));
+
+// Allow left/right arrow keys and Escape to navigate or close
+document.addEventListener('keydown', e => {
+  if (modal.style.display === 'block') {
+    if (e.key === 'ArrowLeft')  navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+    if (e.key === 'Escape')      closeModal.click();
+  }
+});
+
+// Close modal on “×”
+closeModal.addEventListener('click', () => {
+  modal.style.display = 'none';
+  modalVid.pause();              // ⟵ stop video playback
+  // modalVid.currentTime = 0;    // optional: rewind to start
+});
+
+// Close modal when clicking outside
+modal.addEventListener('click', e => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+    modalVid.pause();            // ⟵ stop video playback
+    // modalVid.currentTime = 0;  // optional
+  }
+});
+
+// Whenever a filter button is clicked, update the array for arrow navigation
+filterBtns.forEach(btn =>
+  btn.addEventListener('click', () => {
+    setTimeout(updateCurrentItems, 50);
+  })
+);
+
+
+/* --------------------------- */
+
 
 // Intersection Observer for fade-in animations
 const fadeElements = document.querySelectorAll('.fade-in');
@@ -159,91 +271,6 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-// Firework class
-/* class Firework {
-    constructor(x, y, targetX, targetY, color) {
-        this.x = x;
-        this.y = y;
-        this.startX = x;
-        this.startY = y;
-        this.targetX = targetX;
-        this.targetY = targetY;
-        this.distanceToTarget = Math.sqrt(Math.pow(targetX - x, 2) + Math.pow(targetY - y, 2));
-        this.distanceTraveled = 0;
-        this.coordinates = [];
-        this.coordinateCount = 3;
-        this.speed = 1.2; // Reduced from 2 to slow down launch
-        this.friction = 0.98;
-        this.gravity = 0.8; // Reduced from 1 to make it more floaty
-        this.hue = color || Math.floor(Math.random() * 360);
-        this.brightness = Math.random() * 50 + 50;
-        this.alpha = 1;
-        this.decay = Math.random() * 0.03 + 0.02;
-        this.trail = [];
-        this.maxTrailLength = 5;
-        
-        // Initialize coordinates
-        while (this.coordinateCount--) {
-            this.coordinates.push([this.x, this.y]);
-        }
-        this.angle = Math.atan2(targetY - y, targetX - x);
-        this.speed = 1.2; // Reduced from 2 to slow down launch
-        this.acceleration = 1.03; // Reduced from 1.05 for slower acceleration
-        this.brightness = Math.random() * 50 + 50;
-        
-        // Explosion particles
-        this.particles = [];
-    }
-    
-    update(index) {
-        // Remove last coordinate and add current
-        this.coordinates.pop();
-        this.coordinates.unshift([this.x, this.y]);
-        
-        // Add trail effect
-        this.trail.unshift({ x: this.x, y: this.y, alpha: 1 });
-        if (this.trail.length > this.maxTrailLength) {
-            this.trail.pop();
-        }
-        
-        // Calculate distance traveled
-        this.distanceTraveled = Math.sqrt(Math.pow(this.x - this.startX, 2) + Math.pow(this.y - this.startY, 2));
-        
-        // If target reached, explode
-        if (this.distanceTraveled >= this.distanceToTarget) {
-            this.createParticles();
-            // Remove firework
-            fireworks.splice(index, 1);
-        } else {
-            // Move towards target
-            this.speed *= this.acceleration;
-            this.x += Math.cos(this.angle) * this.speed;
-            this.y += Math.sin(this.angle) * this.speed + this.gravity;
-        }
-    }
-    
-    draw() {
-        ctx.beginPath();
-        // Draw trail
-        for (let i = 0; i < this.trail.length; i++) {
-            const point = this.trail[i];
-            ctx.globalAlpha = point.alpha;
-            ctx.fillStyle = `hsl(${this.hue}, 100%, ${this.brightness}%)`;
-            ctx.rect(point.x, point.y, 3, 3);
-            point.alpha *= 0.9;
-        }
-        ctx.fill();
-        ctx.globalAlpha = 1;
-    }
-    
-    createParticles() {
-        const particleCount = 60;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle(this.targetX, this.targetY, this.hue));
-        }
-    }
-} */
-
     class Firework {
         constructor(x, y, angle, color) {
           // position
@@ -259,7 +286,7 @@ window.addEventListener('resize', resizeCanvas);
           this.angle       = angle;
           this.speed       = 12;    // initial “kick” speed
           this.acceleration= 0.98;  // <1 to slow down each frame
-          this.gravity     = 0.3;   // pulls downward every frame
+          this.gravity     = 0.2;   // pulls downward every frame
       
           // appearance
           this.hue         = color;
@@ -280,7 +307,7 @@ window.addEventListener('resize', resizeCanvas);
       
           // — apex detection —  
           // Once dy flips from negative (still rising) to >=0 (would start falling):
-          if (dy >= 0) {
+          if (dy >= -0.5) { //changed from 0, to explode earlier
             this.createParticles();
             fireworks.splice(i, 1);
             return;
@@ -377,44 +404,6 @@ let particles = [];
 // Initial hue
 let hue = 120;
 
-// Animation loop
-/* function animate() {
-    requestAnimationFrame(animate);
-    
-    // Clear canvas with semi-transparent black
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Random firework creation - reduced frequency
-    if (Math.random() < 0.02) { // Reduced from 0.05 to create fireworks less frequently
-        const x = canvas.width * Math.random();
-        const y = canvas.height * Math.random();
-        const color = Math.floor(Math.random() * 360);
-        fireworks.push(new Firework(
-            canvas.width / 2,
-            canvas.height,
-            x,
-            y,
-            color
-        ));
-    }
-    
-    // Update and draw fireworks
-    for (let i = fireworks.length - 1; i >= 0; i--) {
-        fireworks[i].draw();
-        fireworks[i].update(i);
-    }
-    
-    // Update and draw particles
-    for (let i = particles.length - 1; i >= 0; i--) {
-        particles[i].draw();
-        particles[i].update(i);
-    }
-    
-    // Cycle hue more slowly
-    hue += 0.3; // Reduced from 0.5 for slower color transitions
-} */
-
 function animate() {
     requestAnimationFrame(animate);
     
@@ -423,10 +412,10 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     // ~3% chance per frame to launch
-    if (Math.random() < 0.03) {
-        // choose angle ±60° around straight up
-        const spreadDeg = 60;
-        const deg       = Math.random()*2*spreadDeg - spreadDeg;  // -60…+60
+    if (Math.random() < 0.04) {
+        // choose angle ±50° around straight up
+        const spreadDeg = 50;
+        const deg       = Math.random()*2*spreadDeg - spreadDeg;  // -50…+50
         const angle     = (deg - 90) * Math.PI/180;               // -90° = up
     
         const color = Math.floor(Math.random()*360);
