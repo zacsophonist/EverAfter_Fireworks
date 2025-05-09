@@ -4,7 +4,13 @@ const navLinks = document.getElementById('navLinks');
 
 hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
-  hamburger.classList.toggle('open');
+
+  const icon = hamburger.querySelector('i');
+  if (navLinks.classList.contains('active')) {
+    icon.classList.replace('fa-bars', 'fa-times');
+  } else {
+    icon.classList.replace('fa-times', 'fa-bars');
+  }
 });
 
 // Close mobile nav when clicking on a link
