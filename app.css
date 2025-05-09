@@ -263,7 +263,7 @@
       /*–– Scroll-down indicator for Hero ––*/
       .scroll-down {
           position: absolute;
-          bottom: calc(5vh + env(safe-area-inset-bottom, 24px));
+          bottom: 5vh;
           left: 50%;
           transform: translateX(-50%);
           width: 0;
@@ -934,6 +934,11 @@
           .service-cards {
               grid-template-columns: 1fr;
           }
+
+          /* Raises height of bouncing arrow, above nav bar */
+          .scroll-down {
+            bottom: calc(8vh + env(safe-area-inset-bottom, 24px));
+          }
       }
       
       @media (max-width: 480px) {
@@ -955,6 +960,11 @@
           
           .hero-content {
               padding: 1rem;
+          }
+
+          /* Raises height of bouncing arrow, above nav bar */
+          .scroll-down {
+            bottom: calc(8vh + env(safe-area-inset-bottom, 24px));
           }
       }
 
