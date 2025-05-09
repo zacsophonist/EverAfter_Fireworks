@@ -3,9 +3,8 @@ const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 
 hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.innerHTML = navLinks.classList.contains('active') ? 
-        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+  navLinks.classList.toggle('active');
+  hamburger.classList.toggle('open');
 });
 
 // Close mobile nav when clicking on a link

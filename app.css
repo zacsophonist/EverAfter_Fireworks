@@ -201,6 +201,17 @@
           color: var(--light-color);
           font-size: 1.5rem;
       }
+
+      .hamburger i::before {
+        content: "\f0c9"; /* bars */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+      }
+      
+      .hamburger.open i::before {
+        content: "\f00d"; /* times */
+      }
+      
       
       /* Hero Section Styles */
       .hero {
