@@ -101,6 +101,12 @@ const filterBtns = document.querySelectorAll('.gallery-filter'); // filter butto
 let currentItems = [];   // array of .gallery-item elements currently visible by filter
 let currentIndex = 0;    // index within currentItems of the one showing in modal
 
+// Pauses and resets the modal video if active
+function stopModalVideo() {
+  modalVid.pause();
+  modalVid.currentTime = 0;
+}
+
 // Build the array of items matching the active filter button
 function updateCurrentItems() {
   const activeFilter = document.querySelector('.gallery-filter.active').dataset.filter;
@@ -141,6 +147,7 @@ galleryItems.forEach(item => {
 
 // Move forwards or backwards through currentItems, wrapping around ends
 function navigate(offset) {
+  stopModalVideo();
   currentIndex = (currentIndex + offset + currentItems.length) % currentItems.length;
   const nextItem = currentItems[currentIndex];
   const imgEl = nextItem.querySelector('img');
@@ -175,16 +182,14 @@ document.addEventListener('keydown', e => {
 // Close modal on “×”
 closeModal.addEventListener('click', () => {
   modal.style.display = 'none';
-  modalVid.pause();              // ⟵ stop video playback
-  // modalVid.currentTime = 0;    // optional: rewind to start
+  stopModalVideo();              // ⟵ stop video playback
 });
 
 // Close modal when clicking outside
 modal.addEventListener('click', e => {
   if (e.target === modal) {
     modal.style.display = 'none';
-    modalVid.pause();            // ⟵ stop video playback
-    // modalVid.currentTime = 0;  // optional
+    stopModalVideo();            // ⟵ stop video playback
   }
 });
 

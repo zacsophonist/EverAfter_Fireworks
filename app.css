@@ -525,15 +525,18 @@
           overflow: auto;
           padding: 2rem;
       }
-      
+    
       .modal-content {
-          display: block;
-          margin: 0 auto;
-          max-width: 90%;
-          max-height: 90vh;
-          border-radius: 5px;
+        display: block;
+        margin: auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 90%;
+        max-height: 90vh;
+        border-radius: 5px;
       }
-      
+    
       .close-modal {
           position: absolute;
           top: 20px;
@@ -555,15 +558,15 @@
           padding: 0.5rem;
           z-index: 1002;
       }
-    
+
       .modal-prev {
           left: 2rem;
       }
-    
+
       .modal-next {
           right: 2rem;
       }
-    
+
       .modal-nav:hover {
           color: var(--accent-color);
       }
@@ -945,7 +948,7 @@
 
           /* Raises height of bouncing arrow, above nav bar */
           .scroll-down {
-            bottom: calc(9vh + env(safe-area-inset-bottom, 24px));
+              bottom: calc(9vh + env(safe-area-inset-bottom, 24px));
           }
       }
       
@@ -972,7 +975,15 @@
 
           /* Raises height of bouncing arrow, above nav bar */
           .scroll-down {
-            bottom: calc(9vh + env(safe-area-inset-bottom, 24px));
+              bottom: calc(9vh + env(safe-area-inset-bottom, 24px));
+          }
+
+          /* move arrows closer to screen edge on mobile */
+          .modal-prev {
+              left: 0.5rem;
+          }
+          .modal-next {
+              right: 0.5rem;
           }
       }
 
