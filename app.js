@@ -489,3 +489,9 @@ if (weddingDateInput) {
         }
     });
 }
+
+/* Forces browser to check screen dimension in order to force Hamburger menu to appear more quickly on mobile */
+document.body.setAttribute('data-w', window.innerWidth);
+window.addEventListener('resize', () => {
+  document.body.setAttribute('data-w', window.innerWidth);
+});
