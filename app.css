@@ -442,15 +442,22 @@
       }
       
       .gallery-filter {
-          background-color: transparent;
+/*           background-color: rgba(147, 112, 219, 0.1); */
+          background-color: #0a0520;
+          /* border: 1px solid rgba(147, 112, 219, 0.3); */
           border: none;
           color: var(--text-color);
           padding: 0.5rem 1rem;
           margin: 0 0.5rem;
           cursor: pointer;
           font-family: 'Cinzel', serif;
-          transition: all 0.3s ease;
-          border-bottom: 2px solid transparent;
+          transition: all 0.2s ease;
+          border-bottom: 1px solid rgba(147, 112, 219, 0.3);
+      }
+
+      .gallery-filter:hover {
+        background-color: rgba(147, 112, 219, 0.1);
+/*         border-color: var(--accent-color); */
       }
       
       .gallery-filter.active {
