@@ -418,13 +418,39 @@
       }
 
       .service-link {
-        text-decoration: none;
-        color: inherit;
-        display: flex;
+          text-decoration: none;
+          color: inherit;
+          display: flex;
       }
       .service-link .service-card {
-        cursor: pointer;
-        flex: 1;
+          cursor: pointer;
+          flex: 1;
+      }
+
+      /* Make the <div class="service-card"> fill its link wrapper and become a column flexbox */
+      .service-link .service-card {
+          display: flex;
+          flex-direction: column;
+      }
+    
+      /* Allow the main content area to grow and hold everything above the “Learn more” */
+      .service-card .service-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+      }
+
+      /* style the “Learn more” text */
+      .learn-more {
+          margin-top: auto;
+          position: relative;
+          top: -0.8rem;
+          color: var(--accent-color);
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: color 0.2s ease;
       }
 
       
@@ -1042,29 +1068,29 @@
 
       /* Aligns Service page to the top */
       body.service-page main {
-        margin-top: 6rem;
+        margin-top: 7rem;
       }
 
       /* Service-detail page styles (Weddings, Occasions, Corporate) */
       .service-detail {
-          /* will inherit the 5rem vertical padding from section */
+          /* will inherit the 7rem vertical padding from section */
           text-align: left;
       }
       
       .service-detail h2 {
           font-size: 2.5rem;
-          margin-bottom: 1rem;
       }
     
       .service-detail p {
-          margin-bottom: 1.5rem;
+          margin-top: 0.8rem;
+          margin-bottom: 1.8rem;
           font-size: 1.1rem;
           line-height: 1.6;
       }
     
       .service-detail ul {
           list-style: disc inside;
-          margin: 0.5rem 0 1rem;
+          margin: 0.5rem 0 1.8rem;
           padding-left: 1.5rem;
       }
     
@@ -1088,7 +1114,6 @@
       /* main title underline */
       body.service-page .service-detail h2 {
       border-bottom: 2px solid var(--accent-color);
-      margin-bottom: 1.5rem;
       }
 
       /* section subtitles underline */
