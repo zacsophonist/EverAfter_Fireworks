@@ -70,6 +70,12 @@
           margin: 0 auto;
           padding: 1rem 0; /* Down from 2rem */
       }
+
+      header > .container {
+        padding-top: 0.4rem;
+        padding-bottom: 0;
+      }
+      
       
       .btn {
           display: inline-block;
@@ -110,20 +116,25 @@
           width: 100%;
           z-index: 1000;
           transition: all 0.3s ease;
-          padding: 1.2rem 0;
+          padding: 1.1rem 0 0.2rem;
           background-color: rgba(10, 5, 32, 0.9);
           backdrop-filter: blur(5px);
           border-bottom: 1px solid rgba(147, 112, 219, 0.2);
       }
       
       header.scrolled {
-          padding: 0.7rem 0;
+          padding: 0.6rem 0 0rem;
           background-color: rgba(10, 5, 32, 0.95);
       }
 
       /* on service pages, use the “scrolled” header padding by default */
       body.service-page header {
-          padding: 0.7rem 0;        /* match what header.scrolled uses */
+          padding: 0rem 0 0rem;        /* match what header.scrolled uses */
+      }
+
+      /* ensure the image itself isn’t leaving any inline gaps */
+      header .logo-link img {
+          display: block; /* no baseline whitespace */
       }
       
       nav {
@@ -135,29 +146,13 @@
       .logo {
           display: flex;
           align-items: center;
+          margin-left: -2rem; 
       }
       
       .logo img {
-          height: 50px;
+          height: 120px;
+          width: auto;
           margin-right: 10px;
-      }
-      
-      .logo-text {
-          display: flex;
-          flex-direction: column;
-      }
-      
-      .logo-title {
-          font-family: 'Cinzel', serif;
-          font-size: 1.5rem;
-          color: var(--light-color);
-          margin: 0;
-      }
-      
-      .logo-slogan {
-          font-size: 0.7rem;
-          font-style: italic;
-          color: var(--accent-color);
       }
       
       .nav-links {
@@ -167,7 +162,7 @@
       
       .nav-links li {
           margin-left: 2rem;
-          margin-top: 1.6rem;
+          margin-top: 1rem;
       }
       
       .nav-links a {
@@ -365,7 +360,7 @@
 
       /*–– pull Services heading up ––*/
       .services {
-          padding-top: 3.5rem;
+          padding-top: 4.5rem;
       }
 
       /*–––– make the flourish visible and sized ––*/
@@ -907,6 +902,11 @@
       .fade-in {
           animation: fadeIn 1s ease forwards;
       }
+
+      /* Raises height of bouncing arrow, above nav bar */
+      .scroll-down {
+        bottom: calc(9vh + env(safe-area-inset-bottom, 24px));
+    }
       
       /* Responsive Styles */
       @media (max-width: 992px) {
@@ -923,6 +923,7 @@
               width: 90%;
               padding: 1rem 0;
           }
+
       }
       
       @media (max-width: 768px) {
@@ -970,11 +971,6 @@
           .service-cards {
               grid-template-columns: 1fr;
           }
-
-          /* Raises height of bouncing arrow, above nav bar */
-          .scroll-down {
-              bottom: calc(9vh + env(safe-area-inset-bottom, 24px));
-          }
       }
       
       @media (max-width: 480px) {
@@ -986,24 +982,11 @@
               padding: 3rem 0;
           }
           
-          .logo-title {
-              font-size: 1.2rem;
-          }
-          
-          .logo-slogan {
-              font-size: 0.6rem;
-          }
-          
           .hero-content {
               padding: 1rem;
           }
 
-          /* Raises height of bouncing arrow, above nav bar */
-          .scroll-down {
-              bottom: calc(9vh + env(safe-area-inset-bottom, 24px));
-          }
-
-          /* move arrows closer to screen edge on mobile */
+          /* move gallery arrows closer to screen edge on mobile */
           .modal-prev {
               left: 0.5rem;
           }
