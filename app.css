@@ -905,7 +905,7 @@
 
       /* Raises height of bouncing arrow, above nav bar */
       .scroll-down {
-        bottom: calc(9vh + env(safe-area-inset-bottom, 24px));
+        bottom: calc(10vh + env(safe-area-inset-bottom, 24px));
     }
       
       /* Responsive Styles */
