@@ -74,24 +74,29 @@ scrollTopBtn.addEventListener('click', () => {
 
 // Gallery filtering
 const galleryFilters = document.querySelectorAll('.gallery-filter');
-const galleryItems = document.querySelectorAll('.gallery-item');
+const galleryItems   = document.querySelectorAll('.gallery-item');
 
 galleryFilters.forEach(filter => {
-    filter.addEventListener('click', () => {
-        // Update active filter button
-        galleryFilters.forEach(btn => btn.classList.remove('active'));
-        filter.classList.add('active');
-        
-        const filterValue = filter.getAttribute('data-filter');
-        
-        galleryItems.forEach(item => {
-            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
+  filter.addEventListener('click', () => {
+    // 1) Toggle active class on buttons
+    galleryFilters.forEach(btn => btn.classList.remove('active'));
+    filter.classList.add('active');
+
+    const filterValue = filter.dataset.filter;
+
+    // 2) Hide everything
+    galleryItems.forEach(item => item.style.display = 'none');
+
+    if (filterValue === 'all') {
+      // 3a) “All” selected → show all
+      galleryItems.forEach(item => item.style.display = 'block');
+    } else {
+      // 3b) Show only items whose data-category list includes the filter
+      document
+        .querySelectorAll(`.gallery-item[data-category~="${filterValue}"]`)
+        .forEach(item => item.style.display = 'block');
+    }
+  });
 });
 
 // Grab modal elements and controls
@@ -115,11 +120,13 @@ function stopModalVideo() {
 // Build the array of items matching the active filter button
 function updateCurrentItems() {
   const activeFilter = document.querySelector('.gallery-filter.active').dataset.filter;
+
   currentItems = Array.from(document.querySelectorAll('.gallery-item'))
-                      .filter(item =>
-                        activeFilter === 'all' ||
-                        item.dataset.category === activeFilter
-                      );
+    .filter(item => {
+      // split the space-separated data-category into an array
+      const cats = item.dataset.category.split(/\s+/);
+      return activeFilter === 'all' || cats.includes(activeFilter);
+    });
 }
 
 // Show the modal for the clicked thumbnail (image or video) and record its index
