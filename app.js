@@ -263,7 +263,7 @@ contactForm.addEventListener('submit', (e) => {
             contactForm.style.display = 'none';
             thankYouMessage.style.display = 'block';
             thankYouMessage.classList.add('fade-in'); // <- Fade in effect
-            thankYouMessage.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to thank-you message
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to top of Contact
         } else {
             alert('There was a problem submitting the form. Please try again.');
             submitButton.disabled = false;
