@@ -231,6 +231,7 @@
           background-color: rgba(10, 5, 32, 0.4);
           border-radius: 10px;
           border: 1px solid rgba(147, 112, 219, 0.3);
+          -webkit-backdrop-filter: blur(5px); /* for iOS 15 and older Safari */
           backdrop-filter: blur(5px);
       }
       
