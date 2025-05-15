@@ -655,6 +655,24 @@
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       }
 
+      /* Required-field note */
+      .contact-form {
+          position: relative;
+      }
+      .required-note {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          font-size: 0.9rem;
+          color: var(--accent-color);
+      }
+    
+      /* Red asterisks */
+      .asterisk {
+          color: red;
+          margin-left: 0.1rem;
+      }
+
       .form-group {
           margin-bottom: 1.5rem;
           position: relative; 

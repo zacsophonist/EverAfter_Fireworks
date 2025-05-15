@@ -483,7 +483,7 @@ const res = isFirefox()
 // Edits the Date field in the contact form to warn a Firefox user about coloured dates
 let cal = document.getElementById('firefoxWarning')
 if (res) {
-    cal.innerHTML = "Date of Wedding (Optional) <br> *Note: Weekend dates are coloured red in Firefox browser. This doesn't reflect availability."
+    cal.innerHTML = "Date of Wedding (Optional) <br> -Note: Weekend dates are automatically coloured red in Firefox browser. This does not reflect availability."
 }
 
 // Set today's date as minimum date

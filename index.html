@@ -254,17 +254,26 @@
                         <p>We’d love to hear about your event and how we can help make it extraordinary. Reach out through this form and we’ll be in touch!</p>
                     </div>
                     <div class="contact-form fade-in">
+                        <div class="required-note">
+                            <span class="asterisk">*</span> = Required Field
+                          </div>
                         <form id="contactForm" action="https://formkeep.com/f/aa93e91748b0" method="post">
                             <div class="form-group">
-                                <label for="firstName">First Name*</label>
+                                <label for="firstName">
+                                    First Name<span class="asterisk">*</span>
+                                </label>
                                 <input type="text" id="firstName" name="firstName" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="lastName">Last Name*</label>
+                                <label for="lastName">
+                                    Last Name<span class="asterisk">*</span>
+                                </label>
                                 <input type="text" id="lastName" name="lastName" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Address*</label>
+                                <label for="email">
+                                    Email Address<span class="asterisk">*</span>
+                                </label>
                                 <input type="email" id="email" name="email" class="form-control" required>
                             </div>
                             <div class="form-group input-wrapper"> 
@@ -279,7 +288,7 @@
                                 <input type="text" id="location" name="location" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="message">Additional Details</label>
+                                <label for="message">Additional Details (Optional)</label>
                                 <textarea id="message" name="message" class="form-control" placeholder="Budget restrictions, or anything else you would like to share with us"></textarea>
                             </div>
                             <input type="text" name="_gotcha" style="display:none">
