@@ -143,8 +143,8 @@ galleryItems.forEach(item => {
       // Show video player
       modalImg.style.display = 'none';
       modalVid.src = vidEl.src;
-      modalVid.load();
       modalVid.style.display = 'block';
+      modalVid.load();
       modalVid.currentTime = 0;    // rewind to start
       modalVid.play();             // start rendering frames immediately
     } else {
@@ -169,8 +169,8 @@ function navigate(offset) {
   if (vidEl) {
     modalImg.style.display = 'none';
     modalVid.src = vidEl.src;
-    modalVid.load();
     modalVid.style.display = 'block';
+    modalVid.load();
     modalVid.currentTime = 0;    // rewind when arrow‑navigating
     modalVid.play();             // resume playback immediately
   } else {
