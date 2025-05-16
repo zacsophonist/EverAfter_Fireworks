@@ -257,7 +257,7 @@
       /*–– Scroll-down indicator for Hero ––*/
       .scroll-down {
           position: absolute;
-          bottom: 10.5vh;
+          bottom: 10vh;
           left: 50%;
           transform: translateX(-50%);
           width: 0;
