@@ -142,15 +142,10 @@ galleryItems.forEach(item => {
     if (vidEl) {
       // Show video player
       modalImg.style.display = 'none';
-
-      // ⬇ update the <source> src so .load() actually fetches it
-      const sourceEl = modalVid.querySelector('source');
-      sourceEl.src = vidEl.currentSrc || vidEl.src;
-
-      modalVid.style.display = 'block';    // make the modal video visible
-      modalVid.load();                     // force Safari to fetch the file
-      modalVid.currentTime = 0;            // rewind to start
-      modalVid.play();                     // start rendering frames immediately
+      modalVid.src = vidEl.src;
+      modalVid.style.display = 'block';
+      modalVid.currentTime = 0;    // rewind to start
+      modalVid.play();             // start rendering frames immediately
     } else {
       // Show static image
       modalVid.style.display = 'none';
@@ -172,15 +167,10 @@ function navigate(offset) {
 
   if (vidEl) {
     modalImg.style.display = 'none';
-
-    // ⬇ update the <source> src so .load() actually fetches it
-    const sourceEl = modalVid.querySelector('source');
-    sourceEl.src = vidEl.currentSrc || vidEl.src;
-
-    modalVid.style.display = 'block';    // make the modal video visible
-    modalVid.load();                     // force Safari to fetch the file
-    modalVid.currentTime = 0;            // rewind when arrow-navigating
-    modalVid.play();                     // resume playback immediately
+    modalVid.src = vidEl.src;
+    modalVid.style.display = 'block';
+    modalVid.currentTime = 0;    // rewind when arrow‑navigating
+    modalVid.play();             // resume playback immediately
   } else {
     modalVid.style.display = 'none';
     modalImg.src = imgEl.src;
@@ -204,20 +194,14 @@ document.addEventListener('keydown', e => {
 // Close modal on “×”
 closeModal.addEventListener('click', () => {
   modal.style.display = 'none';
-  modalVid.pause();
-  modalVid.currentTime = 0;
-  modalVid.style.display = 'none';
-  modalVid.querySelector('source').src = '';
+  stopModalVideo();              // ⟵ stop video playback
 });
 
 // Close modal when clicking outside
 modal.addEventListener('click', e => {
   if (e.target === modal) {
     modal.style.display = 'none';
-    modalVid.pause();
-    modalVid.currentTime = 0;
-    modalVid.style.display = 'none';
-    modalVid.querySelector('source').src = '';
+    stopModalVideo();            // ⟵ stop video playback
   }
 });
 
