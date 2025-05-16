@@ -648,23 +648,20 @@
       }
       
       .contact-form {
-          background-color: rgba(10, 5, 32, 0.8);
-          padding: 2rem;
-          border-radius: 10px;
-          border: 1px solid rgba(147, 112, 219, 0.3);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        background-color: rgba(10, 5, 32, 0.8);
+        padding: 2rem;
+        border-radius: 10px;
+        border: 1px solid rgba(147, 112, 219, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        position: relative;
       }
-
-      /* Required-field note */
-      .contact-form {
-          position: relative;
-      }
+      
       .required-note {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          font-size: 0.9rem;
-          color: var(--accent-color);
+        position: absolute;
+        top: 1rem;
+        right: 2rem;
+        font-size: 0.9rem;
+        color: var(--accent-color);
       }
     
       /* Red asterisks */
