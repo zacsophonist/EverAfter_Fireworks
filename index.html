@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PN2Q8KGDXK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PN2Q8KGDXK');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wedding fireworks in Ottawa, the GTA, & Québec – Your EverAfter Starts Here. Magical, affordable displays for unforgettable celebrations.">
+    <link rel="canonical" href="https://everafterfireworks.ca/">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="app.css"> 
+    <title>EverAfter Fireworks - A Storybook Ending to Your Fairy Tale Night</title>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1208283953894901');
+        fbq('track', 'PageView');
+        </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1208283953894901&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+
+<body>
+    <!-- Call to action -->
+    <div id="cta-bar">
+        <a href="index.html#contact">Book your 2025/2026 Wedding Display now</a>
+      </div>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="/" class="logo-link">
+                        <img src="images/EverAfterFireworks.jpg" alt="EverAfter Fireworks Logo" class="logo-image">
+                    </a>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">About</a></li>
+                    <li class="has-dropdown">
+                        <a href="#services" id="services-link">Services</a>
+                        <span id="services-toggle" class="dropdown-arrow-container">
+                          <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </span>
+                        <!-- hidden until toggled -->
+                        <ul class="dropdown-menu">
+                          <li><a href="weddings.html">Weddings</a></li>
+                          <li><a href="events.html">Special Events</a></li>
+                          <li><a href="corporate.html">Corporate</a></li>
+                        </ul>
+                      </li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Canvas Fireworks -->
+    <section class="hero" id="home">
+        <canvas id="fireworks-canvas"></canvas>
+        <div class="hero-content fade-in">
+            <h1>EverAfter Fireworks</h1>
+            <p>A storybook ending to your fairy tale night</p>
+            <div class="cta-buttons">
+                <a href="#services" class="btn">Our Services</a>
+                <a href="#contact" class="btn">Contact Us</a>
+            </div>
+        </div>
+        <!-- places the clickable scroll down arrow -->
+        <a href="#about" class="scroll-down"></a>
+    </section>
+
+    <script>
+        // Function to handle hero visibility on scroll
+        function handleHeroVisibility() {
+            const hero = document.querySelector('.hero');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            // When user scrolls past the first viewport height, hide the hero section
+            if (scrollPosition > windowHeight * 0.7) {
+                hero.style.opacity = '0';
+                hero.style.pointerEvents = 'none';
+            } else {
+                // Gradually fade out as user scrolls
+                const opacity = 1 - (scrollPosition / (windowHeight * 0.7));
+                hero.style.opacity = opacity.toString();
+                hero.style.pointerEvents = 'auto';
+            }
+        }
+        
+        // Add scroll event listener
+        window.addEventListener('scroll', handleHeroVisibility);
+    </script>
+
+    <main>
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="underline-title">About Us</h2>
+                <div class="about-content">
+                    <div class="about-text fade-in">
+                        <p>At EverAfter Fireworks, we believe your special moments deserve a magical finale. Our displays are designed to amplify the emotion of the moment, turning your already incredible day into one that is breathtaking and unforgettable.</p>
+                        <p>Our teams of professional pyrotechnicians have created displays for everything from intimate countryside weddings to grand embassy galas. With decades of collective experience, we deliver stunning artistry and rock-solid reliability, ensuring your event is as safe and seamless as it is spectacular.</p>
+                        <p>With teams based in Ottawa and the GTA, we proudly serve clients all across Southern Ontario and Québec. From Muskoka to Montreal, Maniwaki to Niagara, we’re here to light up your night with beauty, wonder, and just the right touch of magic — truly a storybook ending to your fairy tale night!</p>
+                    </div>
+                    <div class="about-image fade-in">
+                        <img src="images/waterfall.jpg" alt="Elegant fireworks waterfall">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <img src="images/elegant.png" alt="Ottawa Wedding Fireworks" class="services-flourish">
+                <h2>Your EverAfter Starts Here</h2>
+                <img src="images/elegant.png" alt="Ottawa Wedding Fireworks" class="services-flourish">
+                <p>From intimate gatherings to grand celebrations, we offer a range of customizable services to make your special day unforgettable.</p>
+                <div class="service-cards">
+                    <a href="weddings.html" class="service-link">
+                        <div class="service-card fade-in">
+                            <div class="service-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Wedding Fireworks</h3>
+                                <p>Seal your love story with a breathtaking finale! Our custom-designed shows bring to life your vision of a storybook wedding. From the first spark to the grand finale, your display is filled with magical moments that you and your guests will treasure forever.</p>
+                                <span class="learn-more">Learn more →</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="events.html" class="service-link">
+                        <div class="service-card fade-in">
+                            <div class="service-icon">
+                                <i class="fas fa-glass-cheers"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Special Events</h3>
+                                <p>Celebrate anniversaries, birthdays, engagements, graduations, and other milestone moments with a spectacular fireworks display. Our team works closely with you to design a show that captures the spirit and significance of your special occasion.</p>
+                                <span class="learn-more">Learn more →</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="corporate.html" class="service-link">
+                        <div class="service-card fade-in">
+                            <div class="service-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="service-content">
+                                <h3>Corporate Events</h3>
+                                <p>Make your corporate events, product launches, and company celebrations unforgettable with a professional fireworks display. We incorporate your brand colours into custom-designed shows that elevate your event and reinforce your company's identity for years to come.</p>
+                                <span class="learn-more">Learn more →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery">
+            <div class="container">
+                <h2 class="underline-title">Magical Moments Gallery</h2>
+                <p>Browse through our collection of stunning fireworks displays from various events.</p>
+                <div class="gallery-controls">
+                    <button class="gallery-filter active" data-filter="all">All</button>
+                    <button class="gallery-filter" data-filter="weddings">Weddings</button>
+                    <button class="gallery-filter" data-filter="events">Special Events</button>
+                    <button class="gallery-filter" data-filter="corporate">Corporate</button>
+                    <button class="gallery-filter" data-filter="video">Video</button>
+                </div>
+                <div class="gallery-container">
+                    <div class="gallery-item" data-category="weddings">
+                        <img src="images/wedding1.jpg" alt="Royal wedding fireworks display">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="weddings">
+                        <img src="images/wedding2.jpg" alt="True love under fireworks">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="weddings">
+                        <img src="images/wedding3.jpg" alt="Newlyweds kissing beneath fireworks with party">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="weddings">
+                        <img src="images/wedding4.jpg" alt="Newlyweds embracing beneath fireworks with crowd">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="events">
+                        <img src="images/celebration1.jpg" alt="Grand fireworks with crowd">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="events">
+                        <img src="images/celebration2.jpg" alt="Birthday lookout above pier">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="events">
+                        <img src="images/celebration3.jpg" alt="Fireworks celebration with crowd">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="events">
+                        <img src="images/celebration4.jpg" alt="Holiday fireworks downtown">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="corporate">
+                        <img src="images/corporate1.jpg" alt="Massive display on the water">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="corporate">
+                        <img src="images/corporate2.jpg" alt="CN Tower pyrotechnics">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="corporate">
+                        <img src="images/corporate3.jpg" alt="Ski Hill Anniversary">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="corporate">
+                        <img src="images/corporate4.jpg" alt="Live music festival pyrotechnics">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="weddings events corporate video">
+                        <video src="videos/EverAfterPromo.mp4" controls></video>
+                        <div class="gallery-overlay">
+                          <i class="fas fa-play"></i>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="pricing">
+            <div class="container">
+            <h2 class="underline-title">Pricing</h2>
+            <p>Many people are surprised to learn just how affordable a professional fireworks show can be — without compromising on the magic. Whether you’re planning something intimate or extravagant, we’ll work within your budget to deliver the most spectacular display possible.</p>
+            <p>Since every event is unique, we don’t list fixed prices — but we’re happy to provide a free, no-obligation quote once we understand your vision.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="underline-title">Contact Us</h2>
+                <div class="contact-content">
+                    <div class="contact-info fade-in">
+                        <p>We’d love to hear about your event and how we can help make it extraordinary. Reach out through this form for a free no-obligation quote, and we’ll be in touch!</p>
+                    </div>
+                    <div class="contact-form fade-in">
+                        <div class="required-note">
+                            <span class="asterisk">*</span> = Required Field
+                          </div>
+                        <form id="contactForm" action="https://formkeep.com/f/aa93e91748b0" method="post">
+                            <div class="form-group">
+                                <label for="firstName">
+                                    First Name<span class="asterisk">*</span>
+                                </label>
+                                <input type="text" id="firstName" name="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">
+                                    Last Name<span class="asterisk">*</span>
+                                </label>
+                                <input type="text" id="lastName" name="lastName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">
+                                    Email Address<span class="asterisk">*</span>
+                                </label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number (Optional)</label>
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="(555) 123-4567">
+                            </div>
+                            <div class="form-group input-wrapper"> 
+                                <label for="weddingDate" id="firefoxWarning">Date of Wedding (Optional)</label> <!-- id="firefoxWarning" allows app.js to edit the "Date of Wedding" field --> 
+                                <div class="input-with-icon">
+                                    <input type="date" id="weddingDate" name="weddingDate" class="form-control" min="">
+                                    <span class="validation-icon"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location of Wedding (Optional)</label>
+                                <input type="text" id="location" name="location" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Additional Details (Optional)</label>
+                                <textarea id="message" name="message" class="form-control" placeholder="Budget restrictions, or anything else you would like to share with us"></textarea>
+                            </div>
+                            <input type="text" name="_gotcha" style="display:none">
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                        <div id="thankYouMessage" style="display:none;">
+                            <h3>Thank you!</h3>
+                            <p>Your message has been sent. We'll get back to you soon!</p>
+                            <p>Sometimes spam filters get it wrong. Please check your junk folder for a confirmation message.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="footer-heading">EverAfter Fireworks</span>
+                    </div>
+                    <p>Creating magical moments and storybook endings <br> for your special celebrations.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@everafterfireworks.ca</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ontario & Quebec</span>
+                        </div>
+                    </div>
+                    <!-- <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div> -->
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/#about">About Us</a></li>
+                        <li><a href="/#services">Services</a></li>
+                        <li><a href="/#gallery">Gallery</a></li>
+                        <li><a href="/#contact">Contact</a></li>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="/weddings.html">Wedding Fireworks</a></li>
+                        <li><a href="/events.html">Special Events</a></li>
+                        <li><a href="/corporate.html">Corporate Events</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 EverAfter Fireworks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Gallery with nav arrows -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <span class="modal-nav modal-prev">&#10094;</span>
+        <span class="modal-nav modal-next">&#10095;</span>
+        <img class="modal-content" id="modalImage">
+        <video class="modal-content" id="modalVideo" controls preload="auto" style="display: none;"></video>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Load Main App Logic -->
+    <script src="app.js"></script>
+
+</body>
+</html>
