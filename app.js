@@ -292,6 +292,12 @@ contactForm.addEventListener('submit', (e) => {
             }
         }).then(response => {
             if (response.ok) {
+                if (typeof gtag === 'function') {
+                  gtag('event', 'form_submit', {
+                    event_category: 'Contact',
+                    event_label: 'Main Contact Form'
+                  });
+                }
                 contactForm.style.display = 'none';
                 thankYouMessage.style.display = 'block';
                 thankYouMessage.classList.add('fade-in');
