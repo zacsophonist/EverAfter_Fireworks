@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EverAfter Fireworks – Redirect</title>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP9CP190J3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GP9CP190J3'); 
+
+    // Redirect after 100ms so GA logs the pageview
+    setTimeout(() => {
+      window.location.replace("/");
+    }, 100);
+  </script>
+</head>
+<body>
+  <div id="redirect-msg" style="display:none;">
+    Redirecting… <a href="/">Click here if not redirected.</a>
+  </div>
+  <script>
+    // Only show fallback message if redirect hasn’t happened in 200ms
+    setTimeout(() => {
+      document.getElementById('redirect-msg').style.display = 'block';
+    }, 200);
+  </script>
+</body>
+</html>
