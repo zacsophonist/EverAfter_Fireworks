@@ -17,16 +17,25 @@
       window.location.replace("/");
     }, 100);
   </script>
+  <style>
+      body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 20%;
+      }
+  </style>
 </head>
 <body>
-  <div id="redirect-msg" style="display:none;">
-    Redirecting… <a href="/">Click here if not redirected.</a>
-  </div>
+    <div id="redirect-msg" style="display:none;">
+        Redirecting… <a href="/" style="color:#ffb347;">Click here if not redirected.</a>
+    </div>
   <script>
-    // Only show fallback message if redirect hasn’t happened in 200ms
+    // Only show fallback message if redirect hasn’t happened in 1 sec
     setTimeout(() => {
       document.getElementById('redirect-msg').style.display = 'block';
-    }, 200);
+    }, 1000);
   </script>
 </body>
 </html>
