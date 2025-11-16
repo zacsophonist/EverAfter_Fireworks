@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://everafterfireworks.ca/</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://everafterfireworks.ca/weddings.html</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://everafterfireworks.ca/events.html</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://everafterfireworks.ca/corporate.html</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://everafterfireworks.ca/privacy.html</loc>
-    <priority>0.80</priority>
-  </url>
+  <url><loc>https://everafterfireworks.ca/</loc></url>
+  <url><loc>https://everafterfireworks.ca/weddings.html</loc></url>
+  <url><loc>https://everafterfireworks.ca/events.html</loc></url>
+  <url><loc>https://everafterfireworks.ca/corporate.html</loc></url>
+  <url><loc>https://everafterfireworks.ca/privacy.html</loc></url>
 </urlset>
