@@ -139,11 +139,6 @@
           padding: 0.6rem 0 0rem;
       }
 
-      /* on service pages, use the “scrolled” header padding by default */
-      body.service-page header {
-          padding: 0.6rem 0 0rem;        /* match what header.scrolled uses */
-      }
-
       /* ensure the image itself isn’t leaving any inline gaps */
       header .logo-link img {
           display: block; /* no baseline whitespace */
